@@ -1,6 +1,6 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const path = require("path")
+const HtmlWebpackPlugin = require("html-webpack-plugin")
+const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 module.exports = {
   entry: path.resolve(__dirname, "../src/index"),
   output: {
@@ -52,7 +52,6 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      title: "Set Up Project",
       filename: "index.html",
       inject: " body",
       template: path.resolve(__dirname, "../template/index.html")
@@ -72,4 +71,4 @@ module.exports = {
     react: "React",
     "react-dom": "ReactDOM"
   }
-};
+}

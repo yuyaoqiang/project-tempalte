@@ -1,55 +1,55 @@
-const http = require("http");
-const fs = require("fs");
-const path = require("path");
-const os = require("os");
-const mkdirp = require("mkdirp");
-const express = require("express");
-const bodyParser = require("body-parser");
-const fileUpload = require("express-fileupload");
-const webpack = require("webpack");
-const webpackDevMiddleware = require("webpack-dev-middleware");
-const webpackHotMiddleware = require("webpack-hot-middleware");
-const request = require("request");
-const webpackConfig = require("./webpack.dev.js");
-const qs = require("query-string");
-const open = require("open");
+const http = require("http")
+const fs = require("fs")
+const path = require("path")
+const os = require("os")
+const mkdirp = require("mkdirp")
+const express = require("express")
+const bodyParser = require("body-parser")
+const fileUpload = require("express-fileupload")
+const webpack = require("webpack")
+const webpackDevMiddleware = require("webpack-dev-middleware")
+const webpackHotMiddleware = require("webpack-hot-middleware")
+const request = require("request")
+const webpackConfig = require("./webpack.dev.js")
+const qs = require("query-string")
+const open = require("open")
 
 const app = express(),
   PORT = 1668, // 设置启动端口
-  complier = webpack(webpackConfig);
+  complier = webpack(webpackConfig)
 
-var httpServer = http.createServer(app);
+var httpServer = http.createServer(app)
 
 // 启动时生成一个存放临时文件的目录
-mkdirp.sync(path.resolve(__dirname, "../src/temporary"));
+mkdirp.sync(path.resolve(__dirname, "../src/temporary"))
 
 let devMiddleware = webpackDevMiddleware(complier, {
   publicPath: webpackConfig.output.publicPath,
   quiet: true, //向控制台显示任何内容
   hot: true
-});
+})
 
 let hotMiddleware = webpackHotMiddleware(complier, {
   log: false,
   heartbeat: 2000
-});
+})
 
 // 将上层dist/lib目录载入到express进程中, 以便本地开发环境使用/lib路径请求静态资源
-app.use("/lib", express.static(path.join(__dirname, "../resource/lib")));
-app.use(bodyParser());
+app.use("/lib", express.static(path.join(__dirname, "../resource/lib")))
+app.use(bodyParser())
 
-app.use(fileUpload());
+app.use(fileUpload())
 
-app.use(devMiddleware);
+app.use(devMiddleware)
 
-app.use(hotMiddleware);
+app.use(hotMiddleware)
 
 // 这个方法和下边注释的方法作用一样，就是设置访问静态文件的路径
 // app.use(express.static(DIST_DIR))
 
 // 接口代理
 // const URI = 'http://window_control_admin.ya802018.net/api';
-const URI = "http://riskweb.hou2008.com/api";
+const URI = "http://riskweb.hou2008.com/api"
 app.use("/api", (req, res, next) => {
   switch (req.method) {
     case "GET": {
@@ -66,16 +66,16 @@ app.use("/api", (req, res, next) => {
           }
         },
         (error, response, body) => {
-          res.statusCode = response.statusCode;
-          res.setHeader("Content-Type", "application/json;charset=utf-8");
-          res.write(body);
-          res.end();
+          res.statusCode = response.statusCode
+          res.setHeader("Content-Type", "application/json;charset=utf-8")
+          res.write(body)
+          res.end()
         }
-      );
-      break;
+      )
+      break
     }
     case "POST": {
-      const contentType = req.headers["content-type"];
+      const contentType = req.headers["content-type"]
       if (contentType.indexOf("application/x-www-form-urlencoded") >= 0) {
         request(
           {
@@ -91,14 +91,14 @@ app.use("/api", (req, res, next) => {
             }
           },
           (error, response, body) => {
-            res.statusCode = response.statusCode;
-            res.setHeader("Content-Type", "application/json;charset=utf-8");
-            res.write(body);
-            res.end();
+            res.statusCode = response.statusCode
+            res.setHeader("Content-Type", "application/json;charset=utf-8")
+            res.write(body)
+            res.end()
           }
-        );
+        )
       } else {
-        fs.writeFileSync(path.join(__dirname, req.files.file.name), req.files.file.data);
+        fs.writeFileSync(path.join(__dirname, req.files.file.name), req.files.file.data)
         const postFile = request.post(
           {
             url: `${URI}${req.url}`,
@@ -115,15 +115,15 @@ app.use("/api", (req, res, next) => {
           (error, response, body) => {
             fs.unlink(path.join(__dirname, req.files.file.name), err => {
               // console.info('删除成功');
-            });
-            res.statusCode = response.statusCode;
-            res.setHeader("Content-Type", "application/json;charset=utf-8");
-            res.write(body);
-            res.end();
+            })
+            res.statusCode = response.statusCode
+            res.setHeader("Content-Type", "application/json;charset=utf-8")
+            res.write(body)
+            res.end()
           }
-        );
+        )
       }
-      break;
+      break
     }
     case "DELETE": {
       request(
@@ -139,13 +139,13 @@ app.use("/api", (req, res, next) => {
           }
         },
         (error, response, body) => {
-          res.statusCode = response.statusCode;
-          res.setHeader("Content-Type", "application/json;charset=utf-8");
-          res.write(body);
-          res.end();
+          res.statusCode = response.statusCode
+          res.setHeader("Content-Type", "application/json;charset=utf-8")
+          res.write(body)
+          res.end()
         }
-      );
-      break;
+      )
+      break
     }
     case "PUT": {
       request(
@@ -162,13 +162,13 @@ app.use("/api", (req, res, next) => {
           }
         },
         (error, response, body) => {
-          res.statusCode = response.statusCode;
-          res.setHeader("Content-Type", "application/json;charset=utf-8");
-          res.write(body);
-          res.end();
+          res.statusCode = response.statusCode
+          res.setHeader("Content-Type", "application/json;charset=utf-8")
+          res.write(body)
+          res.end()
         }
-      );
-      break;
+      )
+      break
     }
     case "PATCH": {
       request(
@@ -185,13 +185,13 @@ app.use("/api", (req, res, next) => {
           }
         },
         (error, response, body) => {
-          res.statusCode = response.statusCode;
-          res.setHeader("Content-Type", "application/json;charset=utf-8");
-          res.write(body);
-          res.end();
+          res.statusCode = response.statusCode
+          res.setHeader("Content-Type", "application/json;charset=utf-8")
+          res.write(body)
+          res.end()
         }
-      );
-      break;
+      )
+      break
     }
   }
 
@@ -203,23 +203,23 @@ app.use("/api", (req, res, next) => {
   //     console.info(res);
   // })
   // next();
-});
+})
 
 // 这个方法和下边注释的方法作用一样，就是设置访问静态文件的路径
 app.use("*", function(req, res, next) {
-  var filename = path.join(complier.outputPath, "index.html");
-  console.log(filename);
+  var filename = path.join(complier.outputPath, "index.html")
+  console.log(filename)
   complier.outputFileSystem.readFile(filename, function(err, result) {
     if (err) {
-      return next(err);
+      return next(err)
     }
-    res.set("content-type", "text/html");
-    res.send(result);
-    res.end();
-  });
-});
+    res.set("content-type", "text/html")
+    res.send(result)
+    res.end()
+  })
+})
 
 httpServer.listen(PORT, function() {
-  open("http://localhost:" + PORT);
-  console.log("成功启动：localhost:" + PORT);
-});
+  open("http://localhost:" + PORT)
+  console.log("成功启动：localhost:" + PORT)
+})

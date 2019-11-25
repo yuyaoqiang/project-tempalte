@@ -1,8 +1,11 @@
 {
-    "eslintIntegration": true,
-    "stylelintIntegration": true,
-    "tabWidth": 2,
-    "singleQuote": true,
-    "semi": false,
-    "printWidth": 120
+  "eslintIntegration": true,
+  "stylelintIntegration": true,
+  "tabWidth": 2,
+  "singleQuote": false,
+  "semi": true,
+  "printWidth": 120,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

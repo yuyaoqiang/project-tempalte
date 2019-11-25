@@ -1,11 +1,12 @@
-const path = require("path");
-const webpackConfig = require("./webpack.config");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const path = require("path")
+const webpackConfig = require("./webpack.config")
+const HtmlWebpackPlugin = require("html-webpack-plugin")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 
-webpackConfig.mode = "production";
-webpackConfig.entry = "./src/index";
-webpackConfig.devtool = "";
+webpackConfig.mode = "production"
+webpackConfig.entry = "./src/index"
+webpackConfig.devtool = ""
 const ruleArray = [
   {
     test: /\.css$/,
@@ -32,13 +33,19 @@ const ruleArray = [
       }
     ]
   }
-];
+]
 
 const pluginArray = [
+  new HtmlWebpackPlugin({
+    filename: "index.html",
+    inject: " body",
+    template: path.resolve(__dirname, "../template/index_prod.html")
+  }),
   // css抽取单独文件
   new MiniCssExtractPlugin({
     filename: "style/[name].[hash:5].css"
   }),
+
   // css压缩文件
   new OptimizeCSSAssetsPlugin({
     assetNameRegExp: /\.css$/g,
@@ -56,14 +63,14 @@ const pluginArray = [
     },
     canPrint: true
   })
-];
+]
 
 ruleArray.map(item => {
-  webpackConfig.module.rules.push(item);
-});
+  webpackConfig.module.rules.push(item)
+})
 pluginArray.map(item => {
-  webpackConfig.plugins.push(item);
-});
+  webpackConfig.plugins.push(item)
+})
 
 const optimization = {
   splitChunks: {
@@ -82,7 +89,7 @@ const optimization = {
       }
     }
   }
-};
-webpackConfig.optimization = optimization;
+}
+webpackConfig.optimization = optimization
 
-module.exports = webpackConfig;
+module.exports = webpackConfig
