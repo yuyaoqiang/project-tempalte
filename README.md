@@ -1,0 +1,1 @@
+npm install -g gulp nodemon npm-check tslint typed-css-modules typescript typings webpack webpack-cli yarn prettier eslint-plugin-prettier prettier-eslint-cli

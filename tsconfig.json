@@ -1,0 +1,28 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist/",
+        "sourceMap": true,
+        "noImplicitAny": true,
+        "moduleResolution": "node",
+        "allowSyntheticDefaultImports":true,
+        "lib": ["esnext", "dom"],
+        "module": "esnext",
+        "allowJs": true, 
+        "target": "es5",
+        "jsx": "react",
+        "baseUrl":".",
+        "paths":{
+            "@/*": [
+                "src/*"
+              ]
+        },
+        "experimentalDecorators": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+    },
+    "include": ["src/**/*","typesting/*"],
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts"
+    ]
+}
