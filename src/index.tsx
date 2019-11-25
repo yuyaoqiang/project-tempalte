@@ -4,7 +4,7 @@ import * as ReactDOM from "react-dom";
 import * as reactRedux from "react-redux";
 import rootReducer from "@/reducers";
 import rootEpic from "@/epics";
-import App from "@/home/home";
+import App from "@/app";
 import { BrowserRouter } from "react-router-dom";
 import { createEpicMiddleware } from "redux-observable";
 import { connectionProps, connectionState } from "@/connectionTypes";
