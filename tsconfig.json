@@ -1,27 +1,22 @@
 {
-    "compilerOptions": {
-        "outDir": "./dist/",
-        "sourceMap": true,
-        "noImplicitAny": false,
-        "moduleResolution": "node",
-        "allowSyntheticDefaultImports":true,
-        "lib": ["esnext", "dom"],
-        "module": "esnext",
-        "allowJs": true, 
-        "target": "es5",
-        "jsx": "react",
-        "baseUrl":".",
-        "paths":{
-            "@/*": [
-                "src/*"
-              ]
-        },
-        "experimentalDecorators": true,
-        "esModuleInterop": true,
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "lib": ["esnext", "dom"],
+    "module": "esnext",
+    "allowJs": true,
+    "target": "es5",
+    "jsx": "react",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
     },
-    "include": ["src/**/*","typesting/*"],
-    "exclude": [
-        "node_modules",
-        "**/*.spec.ts"
-    ]
+    "experimentalDecorators": true,
+    "esModuleInterop": true
+  },
+  "include": ["src/**/*", "typesting/*"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
 }

@@ -1,12 +1,12 @@
-const path = require("path")
-const webpackConfig = require("./webpack.config")
-const HtmlWebpackPlugin = require("html-webpack-plugin")
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
+const path = require("path");
+const webpackConfig = require("./webpack.config");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
-webpackConfig.mode = "production"
-webpackConfig.entry = "./src/index"
-webpackConfig.devtool = ""
+webpackConfig.mode = "production";
+webpackConfig.entry = "./src/index";
+webpackConfig.devtool = "";
 const ruleArray = [
   {
     test: /\.css$/,
@@ -33,7 +33,7 @@ const ruleArray = [
       }
     ]
   }
-]
+];
 
 const pluginArray = [
   new HtmlWebpackPlugin({
@@ -63,14 +63,14 @@ const pluginArray = [
     },
     canPrint: true
   })
-]
+];
 
 ruleArray.map(item => {
-  webpackConfig.module.rules.push(item)
-})
+  webpackConfig.module.rules.push(item);
+});
 pluginArray.map(item => {
-  webpackConfig.plugins.push(item)
-})
+  webpackConfig.plugins.push(item);
+});
 
 const optimization = {
   splitChunks: {
@@ -89,7 +89,7 @@ const optimization = {
       }
     }
   }
-}
-webpackConfig.optimization = optimization
+};
+webpackConfig.optimization = optimization;
 
-module.exports = webpackConfig
+module.exports = webpackConfig;
