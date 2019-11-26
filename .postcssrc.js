@@ -1,3 +1,5 @@
+const postcssCssNext = require("postcss-cssnext");
+const postcssImport = require("postcss-import");
 module.exports = {
   plugins: {
     "postcss-import": {},
@@ -13,7 +15,6 @@ module.exports = {
       selectorBlackList: [".ignore", ".hairlines"],
       minPixelValue: 1,
       mediaQuery: false
-    },
-    cssnano: { preset: "advanced", autoprefixer: true, "postcss-zindex": false }
+    }
   }
 };

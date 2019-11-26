@@ -10,10 +10,15 @@ export default class App extends React.PureComponent {
   render() {
     return (
       <div>
-        <div className="border-1px">
-          <div className="test aspectratio w-188-246">
+        <div className="flexContainer ignore">
+          <div className="aspectratio w-375-224">
             <div className="aspectratio-content ">
-              <img src={logo}></img>
+              <img src="//gw.alicdn.com/mt/TB1HsjfSXXXXXcFXpXXXXXXXXXX-375-224.png"></img>
+            </div>
+          </div>
+          <div className="aspectratio w-375-224">
+            <div className="aspectratio-content ">
+              <img src="//gw.alicdn.com/mt/TB1HsjfSXXXXXcFXpXXXXXXXXXX-375-224.png"></img>
             </div>
           </div>
         </div>

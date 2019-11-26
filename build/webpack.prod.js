@@ -14,7 +14,7 @@ const ruleArray = [
       MiniCssExtractPlugin.loader,
       "css-loader",
       {
-        loader: "postcss-loader" //自动添加前缀
+        loader: "postcss-loader"
       }
     ]
   },
@@ -26,7 +26,7 @@ const ruleArray = [
         loader: "css-loader"
       },
       {
-        loader: "postcss-loader" //自动添加前缀
+        loader: "postcss-loader"
       },
       {
         loader: "less-loader"
