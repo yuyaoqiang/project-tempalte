@@ -49,7 +49,7 @@ app.use(hotMiddleware);
 
 // 接口代理
 // const URI = 'http://window_control_admin.ya802018.net/api';
-const URI = "http://riskweb.hou2008.com/api";
+const URI = "http://47.244.10.144:8080";
 app.use("/api", (req, res, next) => {
   switch (req.method) {
     case "GET": {
@@ -194,32 +194,23 @@ app.use("/api", (req, res, next) => {
       break;
     }
   }
-
-  // http.request({
-  //     host:'h5.akmstatic.com',
-  //     method:req.method,
-  //     path:/api${req.url},
-  // },(res)=>{
-  //     console.info(res);
-  // })
-  // next();
 });
 
 // 这个方法和下边注释的方法作用一样，就是设置访问静态文件的路径
-app.use("*", function(req, res, next) {
-  var filename = path.join(complier.outputPath, "index.html");
-  console.log(filename);
-  complier.outputFileSystem.readFile(filename, function(err, result) {
-    if (err) {
-      return next(err);
-    }
-    res.set("content-type", "text/html");
-    res.send(result);
-    res.end();
-  });
-});
+// app.use("*", function(req, res, next) {
+//   console.log(333);
+//   var filename = path.join(complier.outputPath, "index.html");
+//   complier.outputFileSystem.readFile(filename, function(err, result) {
+//     if (err) {
+//       return next(err);
+//     }
+//     res.set("content-type", "text/html");
+//     res.send(result);
+//     res.end();
+//   });
+// });
 
 httpServer.listen(PORT, function() {
-  open("http://localhost:" + PORT);
+  // open("http://localhost:" + PORT);
   console.log("成功启动：localhost:" + PORT);
 });

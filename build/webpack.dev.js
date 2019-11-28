@@ -15,7 +15,6 @@ webpackConfig.output.filename = "main[hash].js";
 const ruleArray = [
   {
     test: /\.css$/,
-    exclude: /node_modules/,
     use: [
       {
         loader: "style-loader"

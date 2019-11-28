@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Observable, of } from "rxjs";
 import { ajax } from "rxjs/ajax";
 import { map, catchError } from "rxjs/operators";
@@ -7,7 +6,15 @@ import _ from "lodash";
 
 function processResponse(res) {
   events.subscribe("toggleLoading", false);
-  return res.response;
+  switch (res.status) {
+    case 200:
+      return res.response;
+    case 210:
+      return res.response;
+    default:
+      console.log(res.status);
+      return null;
+  }
 }
 /**
  * @param  {object} options
@@ -25,6 +32,7 @@ export default function request(options = { method: "GET", credentials: "include
   }).pipe(
     map(processResponse),
     catchError(err => {
+      debugger;
       let errorMessage = "interface error";
       if (!_.isEmpty(_.get(err.response, "message"))) {
         errorMessage = err.response.message;

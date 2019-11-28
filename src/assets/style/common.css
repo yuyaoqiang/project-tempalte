@@ -1,26 +1,24 @@
 @charset "utf-8";
-html {
-  color: #000;
-  background: #fff;
-  overflow-y: scroll;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
+
+
+html{
+ font-size:14px;
+ box-sizing: border-box;
+ height: 100vh;
 }
-html * {
-  outline: 0;
-  -webkit-text-size-adjust: none;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+html,body{
+ -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+ -webkit-overflow-scrolling: touch;
+ overflow-scrolling: touch;
 }
-html,
-body {
-  font-family: sans-serif;
-  min-height: 100vh;
-  background-color: #f4f4f4;
-  content: "viewport-units-buggyfill; min-height: 100vh";
-  /* padding-bottom: constant(safe-area-inset-bottom);
-  padding-top: constant(safe-area-inset-top);
-  padding-bottom: env(safe-area-inset-bottom);
-  padding-top: env(safe-area-inset-top); */
+
+body{
+ background: #f6f6f6;
+ min-height: 100vh;
+ font:14px,-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei',
+ 'Helvetica Neue',Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';
+ -webkit-font-smoothing: antialiased;
+ -moz-osx-font-smoothing: grayscale;
 }
 body,
 div,
@@ -62,6 +60,7 @@ nav,
 section {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 input,
 select,
@@ -131,14 +130,11 @@ sup {
 sub {
   bottom: -0.25em;
 }
-a:hover {
-  text-decoration: underline;
-}
 ins,
+span,
 a {
   text-decoration: none;
 }
-
 .hairlines li {
   position: relative;
   border: none;
@@ -242,7 +238,7 @@ a {
 }
 
 /* iPhoneX等支持constant的适配 */
-:root {
+/* :root {
   --safe-area-inset-top: 44px;
   --safe-area-inset-bottom: 34px;
   --safe-area-inset-left: 0px;
@@ -253,4 +249,4 @@ a {
     --origin-safe-area-inset-top: constant(safe-area-inset-top);
     --origin-safe-area-inset-bottom: constant(safe-area-inset-bottom);
   }
-}
+} */

@@ -10,7 +10,7 @@ export function createFormDataPostRequest(url, params) {
     url: path,
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/x-www-form-urlencoded",
       Authorization: "Bearer " + ls.get("t")
     },
     credentials: "include",

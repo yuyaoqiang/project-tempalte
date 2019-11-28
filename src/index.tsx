@@ -9,7 +9,7 @@ import { BrowserRouter } from "react-router-dom";
 import { createEpicMiddleware } from "redux-observable";
 import { connectionProps, connectionState } from "@/connectionTypes";
 import { composeWithDevTools } from "redux-devtools-extension/developmentOnly";
-
+import 'antd-mobile/dist/antd-mobile.css';
 const epicMiddleware = createEpicMiddleware();
 const { createStore, applyMiddleware } = redux;
 const { Provider } = reactRedux;

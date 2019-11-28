@@ -1,28 +1,43 @@
 import * as React from "react";
-import "./app.less";
+import { connect } from "react-redux";
+import { Router, Switch } from "react-router-dom";
+import { connectionProps, connectionState } from "@/connectionTypes";
+import { history } from "@/utils";
+import AuthorizedRoute from "@/pages/auth/AuthorizedRoute";
+import { commonMuitl } from "@/decorator/commonMuitl";
 import "@/assets/style/common.css";
-import logo from "@/assets/img/logo.png";
-export default class App extends React.PureComponent {
+import "./app.less";
+
+class App extends React.PureComponent<connectionProps, connectionState> {
   constructor(props) {
     super(props);
   }
-  componentDidCatch = () => {};
+
+  componentDidMount = () => {
+    this.getUserInfo();
+  };
+
+  getUserInfo = () => {
+    this.props.dispatch({
+      type: "service/user/getUserInfo"
+    });
+  };
+
+  getLottery = () => {
+    this.props.dispatch({
+      type: "service/lottery/lotteryTradition"
+    });
+  };
+
   render() {
+    const AuthorizedRoutePage = commonMuitl(AuthorizedRoute);
     return (
-      <div>
-        <div className="flexContainer ignore">
-          <div className="aspectratio w-375-224">
-            <div className="aspectratio-content ">
-              <img src="//gw.alicdn.com/mt/TB1HsjfSXXXXXcFXpXXXXXXXXXX-375-224.png"></img>
-            </div>
-          </div>
-          <div className="aspectratio w-375-224">
-            <div className="aspectratio-content ">
-              <img src="//gw.alicdn.com/mt/TB1HsjfSXXXXXcFXpXXXXXXXXXX-375-224.png"></img>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Router history={history}>
+        <Switch>
+          <AuthorizedRoutePage />
+        </Switch>
+      </Router>
     );
   }
 }
+export default connect(state => ({ ...state }))(App);
