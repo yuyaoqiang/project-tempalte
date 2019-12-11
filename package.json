@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "gulp prodBuild",
-    "server": "cd build && node index.js"
+    "start": "cd build && node index.js",
+    "webpack": "cd build  &&　webpack --config webpack.prod.js"
   },
   "author": "",
   "license": "ISC",
@@ -75,6 +76,7 @@
     "react-dom": "^16.12.0",
     "react-redux": "^7.1.3",
     "react-router-dom": "^5.1.2",
+    "react-transition-group": "^4.3.0",
     "redux": "^4.0.4",
     "redux-devtools-extension": "^2.13.8",
     "redux-observable": "^1.2.0",

@@ -11,6 +11,7 @@ const libArray = [
 
 const webpackBuild = cb => {
   webpack(webpackProdConfig, (err, stats) => {
+    console.log(err)
     cb();
   });
 };
@@ -27,4 +28,6 @@ const cleanFelder = done => {
   return src(["resource", "dist"], { allowEmpty: true }).pipe(clean());
 };
 
+// exports.prodBuild = series(webpackBuild, copyLibrary, copyResource);
 exports.prodBuild = series(cleanFelder, webpackBuild, copyLibrary, copyResource);
+// exports.prodBuild = series(webpackBuild);

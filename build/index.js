@@ -197,20 +197,19 @@ app.use("/api", (req, res, next) => {
 });
 
 // 这个方法和下边注释的方法作用一样，就是设置访问静态文件的路径
-// app.use("*", function(req, res, next) {
-//   console.log(333);
-//   var filename = path.join(complier.outputPath, "index.html");
-//   complier.outputFileSystem.readFile(filename, function(err, result) {
-//     if (err) {
-//       return next(err);
-//     }
-//     res.set("content-type", "text/html");
-//     res.send(result);
-//     res.end();
-//   });
-// });
+app.use("*", function (req, res, next) {
+  var filename = path.join(complier.outputPath, "index.html");
+  complier.outputFileSystem.readFile(filename, function (err, result) {
+    if (err) {
+      return next(err);
+    }
+    res.set("content-type", "text/html");
+    res.send(result);
+    res.end();
+  });
+});
 
-httpServer.listen(PORT, function() {
+httpServer.listen(PORT, function () {
   // open("http://localhost:" + PORT);
   console.log("成功启动：localhost:" + PORT);
 });

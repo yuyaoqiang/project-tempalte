@@ -4,9 +4,11 @@ import Login from "@/pages/login/login";
 import NotFound from "@/pages/notFound/notFound";
 import { routerConfig } from "@/routers";
 import { connectionProps, connectionState } from "@/connectionTypes";
-import { commonMuitl } from "@/decorator/commonMuitl";
 
 export default class Auth extends PureComponent<connectionProps, connectionState> {
+  constructor(props) {
+    super(props);
+  }
   render() {
     const { location } = this.props;
     const { pathname } = location;
@@ -17,7 +19,6 @@ export default class Auth extends PureComponent<connectionProps, connectionState
       const { component } = targetRouterConfig;
       return <Route exact path={pathname} component={component} />;
     }
-
     if (isLogin) {
       // 如果是登陆状态，想要跳转到登陆
       if (pathname === "/login") {

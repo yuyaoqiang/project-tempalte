@@ -5,11 +5,11 @@ import * as reactRedux from "react-redux";
 import rootReducer from "@/reducers";
 import rootEpic from "@/epics";
 import App from "@/app";
-import { BrowserRouter } from "react-router-dom";
+import { Router } from "react-router-dom";
+import { history } from "@/utils";
 import { createEpicMiddleware } from "redux-observable";
-import { connectionProps, connectionState } from "@/connectionTypes";
 import { composeWithDevTools } from "redux-devtools-extension/developmentOnly";
-import 'antd-mobile/dist/antd-mobile.css';
+import "antd-mobile/dist/antd-mobile.css";
 const epicMiddleware = createEpicMiddleware();
 const { createStore, applyMiddleware } = redux;
 const { Provider } = reactRedux;
@@ -20,9 +20,9 @@ const store = applyCreateStore(rootReducer, composeWithDevTools());
 epicMiddleware.run(rootEpic);
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <Router history={history}>
       <App />
-    </BrowserRouter>
+    </Router>
   </Provider>,
   document.getElementById("app")
 );
